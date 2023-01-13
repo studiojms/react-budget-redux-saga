@@ -1,13 +1,18 @@
 import { Button } from 'semantic-ui-react';
 
-interface ButtonProps {}
+interface ButtonProps {
+  onSave: () => void;
+  onCancel: () => void;
+}
 
-function SaveOrCancelButton(params: ButtonProps) {
+function SaveOrCancelButton({ onSave, onCancel }: ButtonProps) {
   return (
     <Button.Group style={{ marginTop: 20 }}>
-      <Button>Cancel</Button>
+      <Button onClick={onCancel}>Cancel</Button>
       <Button.Or />
-      <Button primary>Ok</Button>
+      <Button primary onClick={onSave}>
+        Ok
+      </Button>
     </Button.Group>
   );
 }

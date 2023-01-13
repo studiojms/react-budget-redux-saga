@@ -1,16 +1,49 @@
 import { Form } from 'semantic-ui-react';
+import { OperationType } from '../types';
 import SaveOrCancelButton from './SaveOrCancelButton';
+import TransactionFormFields from './TransactionFormFields';
 
-interface FormProps {}
+interface FormProps {
+  description: string;
+  value: string;
+  isExpense: boolean;
+  setDescription: (val: string) => void;
+  setValue: (val: string) => void;
+  setIsExpense: (val: boolean) => void;
+  onAddEntry: (description: string, value: string, type: OperationType) => void;
+}
 
-function TransactionForm(params: FormProps) {
+function TransactionForm({
+  description,
+  value,
+  isExpense,
+  setDescription,
+  setValue,
+  setIsExpense,
+  onAddEntry,
+}: FormProps) {
+  const clearFields = () => {
+    setDescription('');
+    setValue('');
+    setIsExpense(false);
+  };
+
+  const onSave = () => {
+    onAddEntry(description, value, isExpense ? 'expense' : 'income');
+    clearFields();
+  };
+
   return (
     <Form unstackable>
-      <Form.Group>
-        <Form.Input icon="tags" width={12} label="Description" placeholder="New item" />
-        <Form.Input icon="dollar" iconPosition="left" width={4} label="Value" placeholder="100.00" />
-      </Form.Group>
-      <SaveOrCancelButton />
+      <TransactionFormFields
+        description={description}
+        value={value}
+        isExpense={isExpense}
+        setDescription={setDescription}
+        setValue={setValue}
+        setIsExpense={setIsExpense}
+      />
+      <SaveOrCancelButton onSave={onSave} onCancel={() => clearFields()} />
     </Form>
   );
 }
