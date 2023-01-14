@@ -1,18 +1,19 @@
-import { Dispatch, SetStateAction, useState } from 'react';
-import { Container, Grid, Icon, Segment } from 'semantic-ui-react';
+import { useDispatch } from 'react-redux';
+import { Grid, Icon, Segment } from 'semantic-ui-react';
+import { removeEntry } from '../actions/entries.action';
+import { openEditModal } from '../actions/modals.action';
 import { OperationType } from '../types';
-import EditModal from './EditModal';
 
 interface HistoryRowProps {
   id: string;
   description: string;
   value: string;
   type: OperationType;
-  onRemoveEntry: (id: string) => void;
-  onEditEntry: (id: string) => void;
 }
 
-function HistoryRow({ id, description, value, type, onRemoveEntry, onEditEntry }: HistoryRowProps) {
+function HistoryRow({ id, description, value, type }: HistoryRowProps) {
+  const dispatch = useDispatch();
+
   return (
     <>
       <Segment color={type == 'income' ? 'green' : 'red'}>
@@ -25,8 +26,8 @@ function HistoryRow({ id, description, value, type, onRemoveEntry, onEditEntry }
               ${value}
             </Grid.Column>
             <Grid.Column width={3}>
-              <Icon name="edit" onClick={() => onEditEntry(id)} />
-              <Icon name="trash" onClick={() => onRemoveEntry(id)} />
+              <Icon name="edit" onClick={() => dispatch(openEditModal(id))} />
+              <Icon name="trash" onClick={() => dispatch(removeEntry(id))} />
             </Grid.Column>
           </Grid.Row>
         </Grid>

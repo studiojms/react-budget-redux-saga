@@ -1,33 +1,28 @@
-import { Dispatch, SetStateAction } from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Button, Modal } from 'semantic-ui-react';
-import { OperationType } from '../types';
+import { closeEditModal } from '../actions/modals.action';
+import useEntryDetails from '../hooks/useEntryDetails';
 import TransactionFormFields from './TransactionFormFields';
 
 interface EditModalProps {
   isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
+
   id: string;
-  description: string;
-  value: string;
-  isExpense: boolean;
-  setDescription: (val: string) => void;
-  setValue: (val: string) => void;
-  setIsExpense: (val: boolean) => void;
-  onEdit: (id: string, description: string, value: string, isExpense: boolean) => void;
 }
 
-function EditModal({
-  isOpen,
-  setIsOpen,
-  id,
-  description,
-  value,
-  isExpense,
-  setDescription,
-  setValue,
-  setIsExpense,
-  onEdit,
-}: EditModalProps) {
+function EditModal({ isOpen, id }: EditModalProps) {
+  const dispatch = useDispatch();
+
+  const { description, value, isExpense, setDescription, setValue, setIsExpense, onUpdateEntry, loadData } =
+    useEntryDetails(id);
+
+  useEffect(() => {
+    if (isOpen) {
+      loadData();
+    }
+  }, [isOpen]);
+
   return (
     <Modal open={isOpen}>
       <Modal.Header>Edit Transaction</Modal.Header>
@@ -42,8 +37,14 @@ function EditModal({
         />
       </Modal.Content>
       <Modal.Actions>
-        <Button onClick={() => setIsOpen(false)}>Close</Button>
-        <Button onClick={() => onEdit(id, description, value, isExpense)} primary>
+        <Button onClick={() => dispatch(closeEditModal())}>Close</Button>
+        <Button
+          onClick={() => {
+            onUpdateEntry(id);
+            dispatch(closeEditModal());
+          }}
+          primary
+        >
           Update
         </Button>
       </Modal.Actions>

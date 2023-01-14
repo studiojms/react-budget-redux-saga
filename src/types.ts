@@ -6,3 +6,8 @@ export type Entry = {
   value: string;
   type: OperationType;
 };
+
+export interface RootState {
+  entries: Entry[];
+  modals: { isOpen: boolean; id: string };
+}

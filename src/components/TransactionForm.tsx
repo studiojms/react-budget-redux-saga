@@ -1,37 +1,21 @@
 import { Form } from 'semantic-ui-react';
-import { OperationType } from '../types';
+import useEntryDetails from '../hooks/useEntryDetails';
 import SaveOrCancelButton from './SaveOrCancelButton';
 import TransactionFormFields from './TransactionFormFields';
 
-interface FormProps {
-  description: string;
-  value: string;
-  isExpense: boolean;
-  setDescription: (val: string) => void;
-  setValue: (val: string) => void;
-  setIsExpense: (val: boolean) => void;
-  onAddEntry: (description: string, value: string, type: OperationType) => void;
-}
+interface FormProps {}
 
-function TransactionForm({
-  description,
-  value,
-  isExpense,
-  setDescription,
-  setValue,
-  setIsExpense,
-  onAddEntry,
-}: FormProps) {
-  const clearFields = () => {
-    setDescription('');
-    setValue('');
-    setIsExpense(false);
-  };
-
-  const onSave = () => {
-    onAddEntry(description, value, isExpense ? 'expense' : 'income');
-    clearFields();
-  };
+function TransactionForm(params: FormProps) {
+  const {
+    description,
+    setDescription,
+    value,
+    setValue,
+    isExpense,
+    setIsExpense,
+    onAddEntry: onSave,
+    clearFields,
+  } = useEntryDetails();
 
   return (
     <Form unstackable>

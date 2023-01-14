@@ -5,11 +5,9 @@ import HistoryRow from './HistoryRow';
 
 interface HistoryProps {
   entries: Entry[];
-  onRemoveEntry: (id: string) => void;
-  onEditEntry: (id: string) => void;
 }
 
-function History({ entries, onRemoveEntry, onEditEntry }: HistoryProps) {
+function History({ entries }: HistoryProps) {
   return (
     <Container>
       {entries.map((entry) => (
@@ -19,8 +17,6 @@ function History({ entries, onRemoveEntry, onEditEntry }: HistoryProps) {
           description={entry.description}
           value={entry.value}
           type={entry.type}
-          onRemoveEntry={onRemoveEntry}
-          onEditEntry={onEditEntry}
         />
       ))}
     </Container>
