@@ -4,7 +4,7 @@ import { OperationType } from '../types';
 
 interface BalanceProps {
   title: string;
-  value: string;
+  value: number;
   type?: OperationType;
   size?: StatisticSizeProp;
 }
@@ -19,7 +19,7 @@ function Balance({ title, value, type, size = 'tiny' }: BalanceProps) {
   return (
     <Statistic size={size} color={typeColor}>
       <Statistic.Label style={{ textAlign: 'left' }}>{title}:</Statistic.Label>
-      <Statistic.Value>{value}</Statistic.Value>
+      <Statistic.Value>$ {value.toFixed(2)}</Statistic.Value>
     </Statistic>
   );
 }

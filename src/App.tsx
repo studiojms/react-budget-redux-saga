@@ -35,7 +35,7 @@ function App() {
   return (
     <Container>
       <MainHeader>My Budget</MainHeader>
-      <Balance title="Your Balance" value={balance.toString()} size="small" />
+      <Balance title="Your Balance" value={balance} size="small" />
       <BalanceList incomeValue={totalIncome} expenseValue={totalExpenses} />
 
       <MainHeader type="h3">History</MainHeader>

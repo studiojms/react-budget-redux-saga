@@ -7,7 +7,7 @@ import { OperationType } from '../types';
 interface HistoryRowProps {
   id: string;
   description: string;
-  value: string;
+  value: number;
   type: OperationType;
 }
 
@@ -23,7 +23,7 @@ function HistoryRow({ id, description, value, type }: HistoryRowProps) {
               {description}
             </Grid.Column>
             <Grid.Column width={3} textAlign="right">
-              ${value}
+              $ {value?.toFixed(2)}
             </Grid.Column>
             <Grid.Column width={3}>
               <Icon name="edit" onClick={() => dispatch(openEditModal(id))} />

@@ -5,25 +5,25 @@ const initialEntries: Entry[] = [
   {
     id: ulid(),
     description: 'Work income',
-    value: '1000.00',
+    value: 1000,
     type: 'income',
   },
   {
     id: ulid(),
     description: 'Water bill',
-    value: '90.00',
+    value: 90,
     type: 'expense',
   },
   {
     id: ulid(),
     description: 'Rent',
-    value: '700.00',
+    value: 700.5,
     type: 'expense',
   },
   {
     id: ulid(),
     description: 'Power bill',
-    value: '50.00',
+    value: 50.9,
     type: 'expense',
   },
 ];

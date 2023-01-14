@@ -5,7 +5,7 @@ import { RootState } from '../types';
 
 function useEntryDetails(id?: string) {
   const [description, setDescription] = useState<string>('');
-  const [value, setValue] = useState<string>('');
+  const [value, setValue] = useState<number>(0);
   const [isExpense, setIsExpense] = useState<boolean>(false);
 
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function useEntryDetails(id?: string) {
 
   const clearFields = () => {
     setDescription('');
-    setValue('');
+    setValue(0);
     setIsExpense(false);
   };
 

@@ -2,10 +2,10 @@ import { Checkbox, Form, Segment } from 'semantic-ui-react';
 
 interface TransactionFormFieldsProps {
   description: string;
-  value: string;
+  value: number;
   isExpense: boolean;
   setDescription: (val: string) => void;
-  setValue: (val: string) => void;
+  setValue: (val: number) => void;
   setIsExpense: (val: boolean) => void;
 }
 
@@ -35,7 +35,7 @@ function TransactionFormFields({
           label="Value"
           placeholder="100.00"
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e) => setValue(Number(e.target.value))}
         />
       </Form.Group>
       <Segment compact>
