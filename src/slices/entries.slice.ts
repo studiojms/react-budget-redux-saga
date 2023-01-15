@@ -5,32 +5,7 @@ import { Entry } from '../types';
 const entriesSlice = createSlice({
   name: 'entries',
   initialState: {
-    entries: [
-      {
-        id: ulid(),
-        description: 'Work income',
-        value: 1000,
-        type: 'income',
-      },
-      {
-        id: ulid(),
-        description: 'Water bill',
-        value: 90,
-        type: 'expense',
-      },
-      {
-        id: ulid(),
-        description: 'Rent',
-        value: 700.5,
-        type: 'expense',
-      },
-      {
-        id: ulid(),
-        description: 'Power bill',
-        value: 50.9,
-        type: 'expense',
-      },
-    ],
+    entries: [] as Entry[],
   },
   reducers: {
     addEntry: (state, action: PayloadAction<Omit<Entry, 'id'>>) => {
@@ -51,9 +26,13 @@ const entriesSlice = createSlice({
 
       state.entries = entries;
     },
+    getEntries: () => {},
+    populateEntries: (state, action) => {
+      state.entries = action.payload || [];
+    },
   },
 });
 
-export const { addEntry, removeEntry, updateEntry } = entriesSlice.actions;
+export const { addEntry, removeEntry, updateEntry, getEntries, populateEntries } = entriesSlice.actions;
 
 export default entriesSlice.reducer;

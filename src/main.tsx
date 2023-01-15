@@ -4,7 +4,9 @@ import { Provider } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
 
 import App from './App';
-import { store } from './store/store';
+import createStore from './store/store';
+
+const store = createStore();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

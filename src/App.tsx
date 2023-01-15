@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container } from 'semantic-ui-react';
 import Balance from './components/Balance';
 import BalanceList from './components/BalanceList';
@@ -7,6 +7,7 @@ import EditModal from './components/EditModal';
 import History from './components/History';
 import MainHeader from './components/MainHeader';
 import TransactionForm from './components/TransactionForm';
+import { getEntries } from './slices/entries.slice';
 import { RootState } from './types';
 
 function App() {
@@ -14,8 +15,13 @@ function App() {
   const [totalIncome, setTotalIncome] = useState(0);
   const [balance, setBalance] = useState(0);
 
+  const dispatch = useDispatch();
   const entries = useSelector((state: RootState) => state.entries.entries);
   const { isOpen, id } = useSelector((state: RootState) => state.modals);
+
+  useEffect(() => {
+    dispatch(getEntries());
+  }, []);
 
   useEffect(() => {
     const totalIncome = entries
