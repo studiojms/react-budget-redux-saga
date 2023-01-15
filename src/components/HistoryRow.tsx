@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { Grid, Icon, Segment } from 'semantic-ui-react';
-import { removeEntry } from '../actions/entries.action';
-import { openEditModal } from '../actions/modals.action';
+import { removeEntry } from '../slices/entries.slice';
+import { openEditModal } from '../slices/modals.slice';
 import { OperationType } from '../types';
 
 interface HistoryRowProps {

@@ -8,6 +8,6 @@ export type Entry = {
 };
 
 export interface RootState {
-  entries: Entry[];
+  entries: { entries: Entry[] };
   modals: { isOpen: boolean; id: string };
 }

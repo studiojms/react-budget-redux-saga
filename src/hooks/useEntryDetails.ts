@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addEntry, updateEntry } from '../actions/entries.action';
+import { addEntry, updateEntry } from '../slices/entries.slice';
 import { RootState } from '../types';
 
 function useEntryDetails(id?: string) {
@@ -9,7 +9,7 @@ function useEntryDetails(id?: string) {
   const [isExpense, setIsExpense] = useState<boolean>(false);
 
   const dispatch = useDispatch();
-  const entryToEdit = useSelector((state: RootState) => state.entries.find((e) => e.id == id));
+  const entryToEdit = useSelector((state: RootState) => state.entries.entries.find((e) => e.id == id));
 
   const loadData = () => {
     if (entryToEdit) {
@@ -31,7 +31,7 @@ function useEntryDetails(id?: string) {
   };
 
   const onUpdateEntry = (id: string) => {
-    dispatch(updateEntry(id, { id, description, value, type: isExpense ? 'expense' : 'income' }));
+    dispatch(updateEntry({ id, entry: { id, description, value, type: isExpense ? 'expense' : 'income' } }));
     clearFields();
   };
 

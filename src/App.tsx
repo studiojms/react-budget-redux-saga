@@ -14,7 +14,7 @@ function App() {
   const [totalIncome, setTotalIncome] = useState(0);
   const [balance, setBalance] = useState(0);
 
-  const entries = useSelector((state: RootState) => state.entries);
+  const entries = useSelector((state: RootState) => state.entries.entries);
   const { isOpen, id } = useSelector((state: RootState) => state.modals);
 
   useEffect(() => {

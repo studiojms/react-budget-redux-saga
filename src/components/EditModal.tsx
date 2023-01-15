@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Modal } from 'semantic-ui-react';
-import { closeEditModal } from '../actions/modals.action';
 import useEntryDetails from '../hooks/useEntryDetails';
+import { closeEditModal } from '../slices/modals.slice';
 import TransactionFormFields from './TransactionFormFields';
 
 interface EditModalProps {
